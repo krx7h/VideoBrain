@@ -1,0 +1,8 @@
+pytubefix
+langchain
+faiss-cpu
+sentence-transformers
+openai
+gradio
+tiktoken
+-U langchain-community
