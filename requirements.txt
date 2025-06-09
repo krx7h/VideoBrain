@@ -5,4 +5,5 @@ sentence-transformers
 openai
 gradio
 tiktoken
--U langchain-community
+langchain-community
+gradio
