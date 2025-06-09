@@ -101,7 +101,13 @@ custom_logo_html = """
     <h1 style="font-size: 24px; font-weight: 600; margin: 0;">VideoBrain</h1>
 </div>
 """
-from huggingface_hub import create_repo
+
+import os
+
+# Set port from environment (Render gives a PORT env variable)
+port = int(os.environ.get("PORT", 7860))
+
+# Your interface code
 with gr.Blocks() as demo:
     gr.HTML(custom_logo_html)
     gr.Markdown("## Created by Krishna Bhat U")
@@ -115,8 +121,16 @@ with gr.Blocks() as demo:
     question_input = gr.Textbox(label="Ask a question about the video")
     ask_button = gr.Button("Send")
 
+    summarize_button.click(
+        fn=summarize_video, 
+        inputs=youtube_url, 
+        outputs=summary_output
+    )
+    ask_button.click(
+        fn=ask_question_about_video, 
+        inputs=[question_input, chat_history], 
+        outputs=[chat_history, question_input]
+    )
 
-    summarize_button.click(fn=summarize_video, inputs=youtube_url, outputs=summary_output)
-    ask_button.click(fn=ask_question_about_video, inputs=[question_input, chat_history], outputs=[chat_history, question_input])
-demo.launch(share=True)
-demo.launch(server_name="0.0.0.0", server_port=7860)
+# ✅ ONLY THIS ONE LAUNCH STATEMENT
+demo.launch(server_name="0.0.0.0", server_port=port)
