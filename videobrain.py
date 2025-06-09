@@ -119,4 +119,4 @@ with gr.Blocks() as demo:
     summarize_button.click(fn=summarize_video, inputs=youtube_url, outputs=summary_output)
     ask_button.click(fn=ask_question_about_video, inputs=[question_input, chat_history], outputs=[chat_history, question_input])
 demo.launch(share=True)
-demo.launch(server_name="0.0.0.0", server_port=7860)
+demo.launch(server_name="127.0.0.1", server_port=7860)
