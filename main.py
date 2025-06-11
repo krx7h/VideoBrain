@@ -15,6 +15,8 @@ sentence-transformers
 openai
 gradio
 tiktoken"""
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 from pytubefix import YouTube
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
