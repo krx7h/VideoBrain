@@ -66,7 +66,7 @@ def chat_with_doc_setup():
     retriever = vectorstore.as_retriever()
     llm = ChatOpenAI(
         model="llama3-8b-8192",
-        openai_api_key="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",
+        openai_api_key="YOUR API KEY",
         openai_api_base="https://api.groq.com/openai/v1",
         temperature=0.4,
     )
