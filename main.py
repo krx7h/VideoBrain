@@ -15,8 +15,7 @@ sentence-transformers
 openai
 gradio
 tiktoken"""
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
+
 from pytubefix import YouTube
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
@@ -118,7 +117,4 @@ with gr.Blocks() as demo:
     ask_button = gr.Button("Send")
     summarize_button.click(fn=summarize_video, inputs=youtube_url, outputs=summary_output)
     ask_button.click(fn=ask_question_about_video, inputs=[question_input, chat_history], outputs=[chat_history, question_input])
-demo.launch(server_name="0.0.0.0", server_port=10000,prevent_thread_lock=True)
-import time
-while True:
-    time.sleep(100)
+demo.launch(share=True)
